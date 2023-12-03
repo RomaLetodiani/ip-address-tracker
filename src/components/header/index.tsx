@@ -19,14 +19,20 @@ const Header = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputValue !== '') {
+    if (
+      inputValue.match(
+        /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+      )
+    ) {
       setSearch(inputValue);
       resetInput();
+    } else {
+      alert('Invalid IP address');
     }
   };
   return (
     <header className="header-bg-mobile header-bg p-5 flex-1 flex justify-center">
-      <div className="w-full max-w-lg sm:max-w-4xl p-5 absolute flex flex-col gap-5 sm:gap-12 items-center">
+      <div className="w-full z-[500] max-w-lg sm:max-w-4xl p-5 absolute flex flex-col gap-5 sm:gap-12 items-center">
         <h1 className="text-xl sm:text-3xl text-center text-[#FFFFFF] tracking-widest font-bold">
           IP Address Tracker
         </h1>

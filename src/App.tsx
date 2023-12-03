@@ -10,7 +10,7 @@ const App = () => {
 
   const { apiData } = useApiData<ApiData>(apiKey, search);
   let values: string[] = [];
-  // let ordinats: number[] = [];
+  let ordinats: number[] = [];
 
   useEffect(() => {
     // Fetch the user's IP address
@@ -32,8 +32,8 @@ const App = () => {
       zipcode,
       time_zone,
       isp,
-      // latitude,
-      // longitude,
+      latitude,
+      longitude,
     } = apiData;
 
     values = [
@@ -42,12 +42,17 @@ const App = () => {
       `UTC ${time_zone.offset}`,
       isp,
     ];
-    // ordinats = [latitude, longitude];
+
+    ordinats = [latitude, longitude];
   }
   return (
     <div className="w-full min-h-screen min-w-[280px] flex flex-col">
       <Header values={values} setSearch={setSearch} />
-      <MapDiv />
+      <MapDiv
+        lng={ordinats[1]}
+        lat={ordinats[0]}
+        mapApiKey={import.meta.env.VITE_M_API_KEY}
+      />
     </div>
   );
 };
