@@ -49,8 +49,8 @@ const App = () => {
     <div className="w-full min-h-screen min-w-[280px] flex flex-col">
       <Header values={values} setSearch={setSearch} />
       <MapDiv
-        lng={ordinats[1]}
-        lat={ordinats[0]}
+        lng={apiData ? ordinats[1] : 0}
+        lat={apiData ? ordinats[0] : 0}
         mapApiKey={import.meta.env.VITE_M_API_KEY}
       />
     </div>
